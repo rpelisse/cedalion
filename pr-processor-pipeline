@@ -27,9 +27,6 @@ pipeline {
                         git branch: 'olympus', url: 'https://github.com/jboss-set/harmonia.git'
                     }
 
-                    dir('workdir') {
-                       echo "Current Workspace is: ${env.PWD}"
-                    }
                     sh label: '', script: "mkdir -p ${env.WORKSPACE}/workdir"
                     script {
                         env.BUILD_SCRIPT = "${env.WORKSPACE}/hera/build-wrapper.sh"
@@ -43,7 +40,8 @@ pipeline {
         stage ('Build') {
             steps {
                 sh label: '', script: "${env.WORKSPACE}/hera/hera.sh job"
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: 'report.html', reportName: 'HTML Report', reportTitles: ''])
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '.', reportFiles: './workdir/report.html', reportName: 'HTML Report', reportTitles: ''])
+                archiveArtifacts artifacts: '**/*', fingerprint: true, followSymlinks: false, onlyIfSuccessful: true
             }
         }
     }
