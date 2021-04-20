@@ -33,7 +33,8 @@ pipeline {
                     env.WORKDIR = "${env.WORKSPACE}/workdir/"
                     sh label: '', script: "${env.WORKSPACE}/hera/hera.sh run"
                     sh label: '', script: "${env.WORKSPACE}/hera/hera.sh job"
-                    archiveArtifacts artifacts: '**/*', fingerprint: true, followSymlinks: false, onlyIfSuccessful: true
+                    archiveArtifacts artifacts: 'workdir/**/*', fingerprint: true, followSymlinks: false, onlyIfSuccessful: true
+                    step([$class: "TapPublisher", testResults: "workdir/*.tap"])
                }
            }
         }
