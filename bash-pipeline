@@ -30,6 +30,7 @@ pipeline {
 
                 script {
                     env.BUILD_SCRIPT = "${env.WORKSPACE}/workdir/${env.PATH_TO_SCRIPT}"
+                    env.WORKSPACE = "${env.WORKSPACE}/workdir/"
                     sh label: '', script: "${env.WORKSPACE}/hera/hera.sh run"
                     sh label: '', script: "${env.WORKSPACE}/hera/hera.sh job"
                     archiveArtifacts artifacts: '**/*', fingerprint: true, followSymlinks: false, onlyIfSuccessful: true
