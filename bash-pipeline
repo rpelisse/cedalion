@@ -5,9 +5,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
      }
 
-//    parameters {
-//    }
-
     stages {
         stage('Main') {
             steps {
@@ -30,8 +27,7 @@ pipeline {
                 }
 
                 script {
-                    env.BUILD_SCRIPT = "${env.WORKSPACE}/hera/build-wrapper.sh"
-                    // Start container
+                    env.BUILD_SCRIPT = "${env.WORKSPACE}/workdir/${env.PATH_TO_SCRIPT}"
                     sh label: '', script: "${env.WORKSPACE}/hera/hera.sh run"
                     sh label: '', script: "${env.WORKSPACE}/hera/hera.sh job"
                     archiveArtifacts artifacts: '**/*', fingerprint: true, followSymlinks: false, onlyIfSuccessful: true
