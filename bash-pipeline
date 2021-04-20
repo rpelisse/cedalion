@@ -18,12 +18,14 @@ pipeline {
                     }
                     echo "GIT_REPOSITORY_BRANCH:[${env.GIT_REPOSITORY_BRANCH}]"
                 }
+
+                dir('hera') {
+                  git 'https://github.com/jboss-set/hera.git'
+                }
+
                 dir('workdir') {
                   git url: "${env.GIT_REPOSITORY_URL}",
                       branch: "${env.GIT_REPOSITORY_BRANCH}"
-                }
-                dir('hera') {
-                  git 'https://github.com/jboss-set/hera.git'
                 }
 
                 script {
