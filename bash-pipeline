@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Main') {
             steps {
-                //cleanWs()
+                cleanWs()
                 script {
                     echo "JOB_NAME:[${env.JOB_NAME}]"
                     echo "SCRIPT:[${env.PATH_TO_SCRIPT}]"
