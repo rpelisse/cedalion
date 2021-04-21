@@ -33,7 +33,7 @@ pipeline {
     stages {
         stage('Prep') {
             steps {
-                //cleanWs()
+                cleanWs()
                 script {
                 // assert if job task is build or testsuite
                 env.BUILD_COMMAND = "no-task"
