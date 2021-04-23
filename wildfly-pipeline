@@ -109,7 +109,14 @@ pipeline {
       stage ('Testsuite') {
             when { expression { env.BUILD_COMMAND == 'testsuite' } }
             steps {
-              sh label: '', script: "${env.WORKSPACE}/hera/hera.sh job"
+              script {
+                try {
+                  sh label: '', script: "${env.WORKSPACE}/hera/hera.sh job"
+                } catch (err) {
+                  echo "Error during build ${err}"
+                }
+                determineBuildResult()
+            }
             }
         }
     }
