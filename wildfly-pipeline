@@ -61,7 +61,7 @@ pipeline {
                 }
 
                 dir('harmonia') {
-                  git branch: 'olympus', url: 'https://github.com/jboss-set/harmonia.git', poll: false, changelog: false
+                  git branch: 'refactor_step1', url: 'https://github.com/rpelisse/harmonia.git', poll: false, changelog: false
                 }
 
                 script {
