@@ -28,7 +28,7 @@ class Builder {
                 }
                 parameters {
                     stringParam {
-                      name("COLLECTION_NAME")
+                      name("PROJECT_NAME")
                       defaultValue(projectName)
                     }
                     stringParam {
