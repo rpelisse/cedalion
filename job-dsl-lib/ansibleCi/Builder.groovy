@@ -13,7 +13,7 @@ class Builder {
 
                 definition {
                     cps {
-                        script(readFileFromWorkspace('pipelines/ansible-pipeline'))
+                        script(readFileFromWorkspace('pipelines/ansible-ci-pipeline'))
                         sandbox()
                     }
                 }
